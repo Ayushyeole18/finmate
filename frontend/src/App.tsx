@@ -1,11 +1,25 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Track from "./pages/Track";
+import Grow from "./pages/Grow";
+import Learn from "./pages/Learn";
+import Protect from "./pages/Protect";
+import AICFO from "./pages/AICFO";
+
 function App() {
   return (
-    <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-emerald-400">FinMate</h1>
-        <p className="mt-2 text-slate-400">Frontend foundation is running.</p>
+    <BrowserRouter>
+      <div className="min-h-screen bg-slate-900 text-white">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/track" element={<Track />} />
+          <Route path="/grow" element={<Grow />} />
+          <Route path="/learn" element={<Learn />} />
+          <Route path="/protect" element={<Protect />} />
+          <Route path="/ai-cfo" element={<AICFO />} />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
