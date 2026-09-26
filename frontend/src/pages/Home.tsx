@@ -1,3 +1,5 @@
+import { H1 } from "@/components/ui/typography";
+
 export default function Home() {
-  return <h1 className="text-2xl font-bold text-foreground">Home</h1>;
+  return <H1>Home</H1>;
 }
