@@ -3,6 +3,14 @@ import { ArrowUpRight } from "lucide-react";
 import LandingHeader from "@/components/LandingHeader";
 import { MetricCard, InsightCard } from "@/components/ui/finmate-cards";
 
+const pillars = [
+  { name: "TRACK", description: "Know where every rupee goes." },
+  { name: "GROW", description: "Turn financial data into long-term plans." },
+  { name: "LEARN", description: "Build financial intelligence." },
+  { name: "PROTECT", description: "Prepare for what can go wrong." },
+  { name: "AI CFO", description: "Ask your money anything." },
+];
+
 export default function Landing() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -43,6 +51,22 @@ export default function Landing() {
           <InsightCard>
             Dining spending is 14% above your normal trend this month.
           </InsightCard>
+        </div>
+      </section>
+
+      <section id="product" className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 py-20">
+          <p className="text-sm font-medium text-primary tracking-wide uppercase mb-4">The Five Pillars</p>
+          <div className="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-border">
+            {pillars.map((pillar) => (
+              <div key={pillar.name} className="py-8 md:py-0 md:px-6 first:md:pl-0 last:md:pr-0">
+                <h3 className="font-heading text-2xl font-bold tracking-tight text-foreground">
+                  {pillar.name}
+                </h3>
+                <p className="mt-3 text-sm text-muted-foreground">{pillar.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
