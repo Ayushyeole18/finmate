@@ -1,5 +1,5 @@
 ﻿import { Link } from "react-router-dom";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Sparkles } from "lucide-react";
 import LandingHeader from "@/components/LandingHeader";
 import { MetricCard, InsightCard } from "@/components/ui/finmate-cards";
 
@@ -92,6 +92,54 @@ export default function Landing() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="ai-cfo" className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-sm font-medium text-primary tracking-wide uppercase mb-4">AI CFO</p>
+              <h2 className="font-heading text-5xl md:text-6xl font-bold tracking-tighter leading-[0.95]">
+                ASK
+                <br />
+                YOUR
+                <br />
+                <span className="text-primary">MONEY.</span>
+              </h2>
+              <p className="mt-6 max-w-md text-muted-foreground">
+                FinMate&apos;s AI CFO answers questions using your real financial data,
+                calculated by verified engines, then explained in plain language.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-6">
+              <div className="flex justify-end">
+                <div className="max-w-xs rounded-lg bg-secondary px-4 py-3 text-sm text-foreground">
+                  How much did I spend on food last month?
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-start gap-3">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/20">
+                  <Sparkles className="size-4 text-primary" />
+                </div>
+                <div className="max-w-sm rounded-lg bg-accent/40 px-4 py-3 text-sm text-foreground ring-1 ring-primary/20">
+                  <p>You spent Rs 8,420 on food in August.</p>
+                  <p className="mt-2">That&apos;s 12.4% higher than July.</p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                <button className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
+                  Show me why
+                </button>
+                <button className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
+                  Find savings
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
