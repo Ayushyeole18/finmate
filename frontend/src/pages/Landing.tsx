@@ -1,5 +1,5 @@
 ﻿import { Link } from "react-router-dom";
-import { ArrowUpRight, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Sparkles, ShieldCheck, Lock, Eye } from "lucide-react";
 import LandingHeader from "@/components/LandingHeader";
 import { MetricCard, InsightCard } from "@/components/ui/finmate-cards";
 
@@ -12,6 +12,12 @@ const pillars = [
 ];
 
 const pipeline = ["TRACK", "UNDERSTAND", "DETECT", "PREDICT", "EXPLAIN", "ACT"];
+
+const trustPoints = [
+  { icon: ShieldCheck, label: "Explainable AI", description: "Every insight shows its reasoning." },
+  { icon: Lock, label: "Data-grounded responses", description: "No fabricated financial numbers." },
+  { icon: Eye, label: "Balance privacy", description: "Hide any number, anywhere, anytime." },
+];
 
 export default function Landing() {
   return (
@@ -143,6 +149,48 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      <section id="security" className="border-t border-border bg-secondary/30">
+        <div className="max-w-7xl mx-auto px-6 py-20">
+          <p className="text-sm font-medium text-primary tracking-wide uppercase mb-4">Trust</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {trustPoints.map((point) => (
+              <div key={point.label} className="flex gap-4">
+                <point.icon className="size-5 shrink-0 text-primary mt-1" />
+                <div>
+                  <h3 className="font-heading text-lg font-semibold text-foreground">{point.label}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{point.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 py-24 text-center">
+          <h2 className="font-heading text-4xl md:text-6xl font-bold tracking-tighter">
+            A new era of
+            <br />
+            <span className="text-primary">personal finance.</span>
+          </h2>
+          <div className="mt-10 flex justify-center">
+            <Link to="/dashboard" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-medium px-8 py-4 rounded-md hover:opacity-90 transition-opacity">
+              GET STARTED
+              <ArrowUpRight className="size-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <span className="text-sm font-bold text-primary">FinMate</span>
+          <p className="text-xs text-muted-foreground">
+            (c) 2026 FinMate. Personal financial intelligence platform.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
