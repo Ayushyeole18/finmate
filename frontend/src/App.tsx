@@ -1,7 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+﻿import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BalanceVisibilityProvider } from "./context/BalanceVisibilityContext";
+import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Track from "./pages/Track";
 import Grow from "./pages/Grow";
@@ -20,23 +23,24 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
 function App() {
   return (
-    <BalanceVisibilityProvider>
-      <BrowserRouter>
-        <Routes>
-          {/* Public landing page — no app navbar */}
-          <Route path="/" element={<Landing />} />
+    <AuthProvider>
+      <BalanceVisibilityProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
-          {/* Authenticated app routes — wrapped in Navbar */}
-          {/* NOTE: not yet auth-gated; /dashboard is temporary until real auth exists */}
-          <Route path="/dashboard" element={<AppLayout><Home /></AppLayout>} />
-          <Route path="/track" element={<AppLayout><Track /></AppLayout>} />
-          <Route path="/grow" element={<AppLayout><Grow /></AppLayout>} />
-          <Route path="/learn" element={<AppLayout><Learn /></AppLayout>} />
-          <Route path="/protect" element={<AppLayout><Protect /></AppLayout>} />
-          <Route path="/ai-cfo" element={<AppLayout><AICFO /></AppLayout>} />
-        </Routes>
-      </BrowserRouter>
-    </BalanceVisibilityProvider>
+            <Route path="/dashboard" element={<AppLayout><Home /></AppLayout>} />
+            <Route path="/track" element={<AppLayout><Track /></AppLayout>} />
+            <Route path="/grow" element={<AppLayout><Grow /></AppLayout>} />
+            <Route path="/learn" element={<AppLayout><Learn /></AppLayout>} />
+            <Route path="/protect" element={<AppLayout><Protect /></AppLayout>} />
+            <Route path="/ai-cfo" element={<AppLayout><AICFO /></AppLayout>} />
+          </Routes>
+        </BrowserRouter>
+      </BalanceVisibilityProvider>
+    </AuthProvider>
   );
 }
 
