@@ -1,6 +1,7 @@
 ﻿import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BalanceVisibilityProvider } from "./context/BalanceVisibilityContext";
 import { AuthProvider } from "./context/AuthContext";
+import RequireAuth from "./components/RequireAuth";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
@@ -14,10 +15,12 @@ import AICFO from "./pages/AICFO";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-      <main className="max-w-7xl mx-auto px-4 py-8">{children}</main>
-    </div>
+    <RequireAuth>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navbar />
+        <main className="max-w-7xl mx-auto px-4 py-8">{children}</main>
+      </div>
+    </RequireAuth>
   );
 }
 

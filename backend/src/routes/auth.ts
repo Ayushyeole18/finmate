@@ -3,6 +3,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import crypto from "node:crypto";
 import { prisma } from "../lib/prisma.js";
+import { requireAuth } from "../lib/auth-middleware.js";
 
 const signupSchema = z.object({
   email: z.string().email(),
@@ -16,12 +17,9 @@ const loginSchema = z.object({
 });
 
 const SESSION_COOKIE_NAME = "finmate_session";
-const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
-async function createSessionAndSetCookie(
-  reply: any,
-  userId: string
-) {
+async function createSessionAndSetCookie(reply: any, userId: string) {
   const token = crypto.randomBytes(32).toString("hex");
   const expiresAt = new Date(Date.now() + SESSION_DURATION_MS);
 
@@ -93,8 +91,6 @@ export async function authRoutes(fastify: FastifyInstance) {
 
     const user = await prisma.user.findUnique({ where: { email } });
 
-    // Deliberately generic error message for both "no such user" and
-    // "wrong password" cases, so we never reveal which emails are registered.
     const invalidCredentialsResponse = () =>
       reply.status(401).send({
         success: false,
@@ -128,5 +124,9 @@ export async function authRoutes(fastify: FastifyInstance) {
     reply.clearCookie(SESSION_COOKIE_NAME, { path: "/" });
 
     return reply.status(200).send({ success: true, data: null });
+  });
+
+  fastify.get("/auth/me", { preHandler: requireAuth }, async (request, reply) => {
+    return reply.send({ success: true, data: request.user });
   });
 }

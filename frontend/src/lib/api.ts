@@ -36,3 +36,7 @@ export function login(email: string, password: string) {
 export function logout() {
   return request<null>("/auth/logout", { method: "POST", body: "{}" });
 }
+
+export function getMe() {
+  return request<User>("/auth/me", { method: "GET" });
+}
